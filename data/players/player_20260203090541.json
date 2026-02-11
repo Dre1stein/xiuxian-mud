@@ -1,0 +1,31 @@
+{
+  "player_id": "player_20260203090541",
+  "name": "逍遥散人",
+  "level": 1,
+  "xp": 0,
+  "stage": "CultivationStage.QI",
+  "sect": "SectType.XIAOYAO",
+  "cultivation": 0,
+  "sect_stats": {
+    "dodge": 25,
+    "stealth": 10,
+    "movement": 20,
+    "crit": 10
+  },
+  "base_stats": {
+    "attack": 10,
+    "defense": 10,
+    "speed": 10,
+    "agility": 10,
+    "constitution": 10,
+    "intellect": 10
+  },
+  "spirit_stones": 1000,
+  "equipment": [],
+  "current_map": "宗门",
+  "talents": [
+    "逍遥步"
+  ],
+  "created_at": "2026-02-03 09:05:41.495354",
+  "last_active": "2026-02-03 09:05:41.495354"
+}

@@ -1,0 +1,56 @@
+# 修仙文字MUD - 配置文件
+
+# 开发环境
+DEBUG = True
+DATABASE_URL = sqlite:///xiuxian_wuxia.db
+LOG_LEVEL = DEBUG
+HOST = 0.0.0.0
+PORT = 5000
+
+# 生产环境
+# DEBUG = False
+# DATABASE_URL = postgresql://user:password@localhost/xiuxian_wuxia
+# LOG_LEVEL = INFO
+
+# 游戏
+MAX_PLAYERS = 1000
+SPIRIT_STONES_START = 1000
+SPIRIT_STONES_DAILY_CAP = 10000
+CULTIVATE_HOURS_MAX = 24
+
+# 经济
+SPIRIT_STONES_EARN_RATE = 10      # 每小时打坐收益
+SPIRIT_STONES_TASK_REWARD = 5000   # 门派每日福利
+SPIRIT_STONES_TASK_MIN = 50       # 任务最小奖励
+SPIRIT_STONES_TASK_MAX = 2000     # 任务最大奖励
+
+# 经验
+XP_HOURLY_GAIN = 10             # 每小时打坐获得经验
+XP_TASK_MIN = 50                 # 任务最小经验
+XP_TASK_MAX = 2000               # 任务最大经验
+
+# 境界
+QI_LEVEL_MAX = 99                 # 炼气期最大等级
+ZHUJI_LEVEL_MAX = 199              # 筑基期最大等级
+JINDAN_LEVEL_MAX = 299             # 金丹期最大等级
+YUANYING_LEVEL_MAX = 499           # 元婴期最大等级
+YUANSHEN_LEVEL_MAX = 999           # 元神期最大等级
+
+# 境界突破
+QI_BREAK_XP = 10000               # 炼气→筑基所需经验
+ZHUJI_BREAK_XP = 100000            # 筑基→金丹所需经验
+JINDAN_BREAK_XP = 1000000          # 金丹→元婴所需经验
+YUANYING_BREAK_XP = 10000000        # 元婴→元神所需经验
+
+# 服务器
+SESSION_TIMEOUT = 3600              # 会话超时（秒）
+MAX_CONCURRENT_SESSIONS = 1000     # 最大并发会话数
+
+# Flask
+CORS_ORIGINS = ["*"]
+CORS_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+
+# 安全
+SECRET_KEY = "xiuxian-wuxia-secret-key-change-in-production"
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True

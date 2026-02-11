@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修仙文字MUD - 游戏</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>修仙文字MUD</h1>
+            <p class="subtitle">凡人修仙，逆天改命</p>
+        </header>
+
+        <div class="game-container">
+            <!-- 左侧：角色信息 -->
+            <aside class="sidebar">
+                <div class="card character-card">
+                    <h2>角色信息</h2>
+                    <div id="character-info">
+                        <p>加载中...</p>
+                    </div>
+                </div>
+
+                <div class="card stats-card">
+                    <h2>属性</h2>
+                    <div id="stats-info">
+                        <p>加载中...</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 中间：主内容区 -->
+            <main class="main-content">
+                <div class="card actions-card">
+                    <h2>修炼行动</h2>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="doCultivate()">
+                            <span class="icon">🧘</span>
+                            打坐修炼
+                        </button>
+                        <button class="btn btn-success" onclick="doExplore()">
+                            <span class="icon">🗺️</span>
+                            秘境探索
+                        </button>
+                        <button class="btn btn-danger" onclick="doBattle()">
+                            <span class="icon">⚔️</span>
+                            挑战妖兽
+                        </button>
+                        <button class="btn btn-info" onclick="viewQuests()">
+                            <span class="icon">📜</span>
+                            查看任务
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card log-card">
+                    <h2>修炼日志</h2>
+                    <div id="game-log" class="log-content">
+                        <p class="log-entry">欢迎来到修仙世界...</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <p>修仙文字MUD v1.0 - 凡人修仙，逆天改命</p>
+            <button onclick="logout()" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.2); border: none; border-radius: 4px; color: #fff; cursor: pointer;">退出登录</button>
+        </footer>
+    </div>
+
+    <script>
+        let currentPlayer = null;
+
+        window.onload = function() {
+            checkLoginStatus();
+        };
+
+        function checkLoginStatus() {
+            const playerName = localStorage.getItem('playerName');
+            if (playerName) {
+                loadPlayer(playerName);
+            } else {
+                window.location.href = '/login';
+            }
+        }
+
+        function loadPlayer(name) {
+            fetch('/api/player/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: name })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    currentPlayer = data.player;
+                    updateCharacterInfo();
+                    addLog(`欢迎回来，${data.player.name}！`);
+                } else {
+                    window.location.href = '/login';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addLog('加载角色数据失败');
+            });
+        }
+
+        function updateCharacterInfo() {
+            if (!currentPlayer) return;
+
+            const characterInfo = document.getElementById('character-info');
+            const statsInfo = document.getElementById('stats-info');
+
+            characterInfo.innerHTML = `
+                <div class="info-item">
+                    <span class="label">道号：</span>
+                    <span class="value">${currentPlayer.name}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">境界：</span>
+                    <span class="value stage">${currentPlayer.stage || '炼气期'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">等级：</span>
+                    <span class="value">${currentPlayer.level || 1}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">门派：</span>
+                    <span class="value">${currentPlayer.sect || '青云门'}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">仙石：</span>
+                    <span class="value stones">${currentPlayer.spirit_stones || 1000}</span>
+                </div>
+            `;
+
+            statsInfo.innerHTML = `
+                <div class="stat-bar">
+                    <span class="stat-name">经验：</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${(currentPlayer.xp || 0) % 100}%"></div>
+                    </div>
+                    <span class="stat-value">${currentPlayer.xp || 0}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-name">战斗力：</span>
+                    <span class="stat-value power">${currentPlayer.combat_power || 100}</span>
+                </div>
+            `;
+        }
+
+        function doCultivate() {
+            if (!currentPlayer) {
+                addLog('请先登录');
+                return;
+            }
+
+            fetch('/api/action/cultivate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ hours: 1 })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const cultivation = data.cultivation;
+                    addLog(`🧘 打坐修炼完成！`);
+                    addLog(`   获得 ${cultivation.xp_gain} 经验`);
+                    addLog(`   获得 ${cultivation.stones_gain} 仙石`);
+                    
+                    if (cultivation.level_up) {
+                        addLog(`⬆️ 恭喜！等级提升到 ${cultivation.new_level} 级！`);
+                    }
+                    
+                    if (cultivation.stage_up) {
+                        addLog(`🎭 恭喜！突破到 ${cultivation.new_stage}！`);
+                    }
+                    
+                    loadPlayer(currentPlayer.name);
+                } else {
+                    addLog('修炼失败：' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addLog('修炼失败');
+            });
+        }
+
+        function doExplore() {
+            addLog('🗺️  开始探索秘境...');
+            addLog('   你走进了一片神秘的森林...');
+            
+            const events = [
+                { type: 'resource', message: '发现了一些灵草', xp: 20, stones: 10 },
+                { type: 'battle', message: '遭遇了野狼', xp: 50, stones: 30 },
+                { type: 'treasure', message: '发现了一个宝箱', xp: 10, stones: 100 },
+                { type: 'nothing', message: '什么都没发现', xp: 5, stones: 0 }
+            ];
+            
+            const event = events[Math.floor(Math.random() * events.length)];
+            
+            setTimeout(() => {
+                addLog(`   ${event.message}`);
+                
+                if (event.type === 'battle') {
+                    addLog('   ⚔️  进入战斗！');
+                    const win = Math.random() > 0.3;
+                    if (win) {
+                        addLog('   ✅ 战斗胜利！');
+                        addLog(`   获得 ${event.xp} 经验, ${event.stones} 仙石`);
+                    } else {
+                        addLog('   ❌ 战斗失败！');
+                        addLog('   你受了轻伤，需要休息...');
+                    }
+                } else {
+                    addLog(`   获得 ${event.xp} 经验, ${event.stones} 仙石`);
+                }
+                
+                addLog('🗺️  探索结束');
+            }, 1500);
+        }
+
+        function doBattle() {
+            const enemies = ['野狼', '山贼', '妖狐', '毒蝎', '野猪', '恶霸'];
+            const enemy = enemies[Math.floor(Math.random() * enemies.length)];
+            
+            addLog(`⚔️  遭遇了 ${enemy}！`);
+            addLog('   战斗开始...');
+            
+            setTimeout(() => {
+                const win = Math.random() > 0.4;
+                if (win) {
+                    const xpGain = 30 + Math.floor(Math.random() * 40);
+                    const stoneGain = 10 + Math.floor(Math.random() * 30);
+                    
+                    addLog('   ✅ 战斗胜利！');
+                    addLog(`   获得 ${xpGain} 经验`);
+                    addLog(`   获得 ${stoneGain} 仙石`);
+                } else {
+                    addLog('   ❌ 战斗失败！');
+                    addLog('   你狼狈地逃跑了...');
+                }
+            }, 2000);
+        }
+
+        function viewQuests() {
+            addLog('📜 任务列表：');
+            addLog('');
+            addLog('📅 日常任务：');
+            addLog('  [ ] 打坐修炼 8 小时');
+            addLog('  [ ] 完成 3 次秘境探索');
+            addLog('  [ ] 击败 5 只妖兽');
+            addLog('');
+            addLog('🎯 主线任务：');
+            addLog('  [ ] 达到炼气期 10 级');
+            addLog('  [ ] 突破到筑基期');
+            addLog('  [ ] 达到金丹期');
+        }
+
+        function addLog(message) {
+            const logContent = document.getElementById('game-log');
+            const entry = document.createElement('p');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContent.appendChild(entry);
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        function logout() {
+            localStorage.removeItem('playerName');
+            sessionStorage.clear();
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>

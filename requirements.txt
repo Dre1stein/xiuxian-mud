@@ -1,0 +1,43 @@
+# 修仙文字MUD - Python依赖包
+
+# Web框架
+flask==2.3.0
+flask-cors==3.0.10
+flask-sqlalchemy==3.0.5
+
+# 数据库
+sqlalchemy==1.4.0
+alembic==1.11.0
+
+# 数据验证
+pydantic==1.10.0
+
+# CLI
+click==8.0.0
+
+# 异步
+asyncio==3.4.3
+
+# 日期时间
+python-dateutil==2.8.0
+
+# 环境变量
+python-dotenv==1.0.0
+
+# 测试
+pytest==7.0.0
+pytest-asyncio==0.20.3
+
+# 代码质量
+black==22.0.0
+flake8==5.0.4
+mypy==1.0.0
+
+# 性能
+redis==4.5.0
+
+# 加密
+cryptography==39.0.0
+
+# 日志
+loguru==0.6.0
