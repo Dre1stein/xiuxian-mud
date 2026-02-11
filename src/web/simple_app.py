@@ -10,6 +10,7 @@ import random
 from datetime import datetime
 
 from src.web.equipment_routes import equipment_bp
+from src.web import combat_routes
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
@@ -22,6 +23,8 @@ app.secret_key = 'xiuxian-simple-secret-key'
 
 # 注册装备系统蓝图
 app.register_blueprint(equipment_bp)
+# 注册战斗系统蓝图
+app.register_blueprint(combat_routes.combat_bp)
 
 
 def get_stage_from_level(level: int):
@@ -278,6 +281,7 @@ if __name__ == '__main__':
     print("   /register - 注册页面")
     print("\n⚙️  系统模块:")
     print("   装备系统已启用 - /api/equipment/*")
+    print("   战斗系统已启用 - /api/combat/*")
     print("\n⚠️  按 Ctrl+C 停止服务器")
     print("=" * 60 + "\n")
     
