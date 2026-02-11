@@ -1,0 +1,87 @@
+# Equipment Sets Configuration
+
+sets:
+  dragon_soul_set:
+    name: "龙魂套装"
+    pieces:
+      - type: weapon
+        subtype: sword
+        name: "龙魂之剑"
+      - type: armor
+        subtype: body
+        name: "龙鳞甲"
+      - type: armor
+        subtype: helmet
+        name: "龙魂头盔"
+      - type: armor
+        subtype: gloves
+        name: "龙爪手"
+      - type: armor
+        subtype: boots
+        name: "龙鳞靴"
+      - type: accessory
+        subtype: necklace
+        name: "龙魂项链"
+    bonuses:
+      2:
+        attack: 100
+        defense: 50
+      4:
+        all_resistance: 15
+        damage_reduction: 10
+      6:
+        attack: 200
+        crit_damage: 50
+        skill: "dragon_breath"
+
+  cloud_dancer_set:
+    name: "云舞套装"
+    pieces:
+      - type: weapon
+        subtype: blade
+        name: "流云刃"
+      - type: armor
+        subtype: robe
+        name: "云舞袍"
+      - type: armor
+        subtype: boots
+        name: "云舞靴"
+      - type: accessory
+        subtype: ring
+        name: "云舞戒指"
+    bonuses:
+      2:
+        speed: 30
+        dodge: 5
+      4:
+        crit_rate: 15
+        move_speed: 20
+        skill: "cloud_step"
+
+  nether_set:
+    name: "幽冥套装"
+    pieces:
+      - type: weapon
+        subtype: scythe
+        name: "幽冥镰刀"
+      - type: armor
+        subtype: heavy_armor
+        name: "幽冥铠甲"
+      - type: armor
+        subtype: helmet
+        name: "幽冥头盔"
+      - type: accessory
+        subtype: cloak
+        name: "幽冥斗篷"
+    bonuses:
+      2:
+        shadow_damage: 150
+        life_steal: 10
+      4:
+        crit_damage: 100
+        poison_damage: 100
+        skill: "death_shroud"
+        skill_effect: "death_explosion"
+        skill_effect_params:
+          damage_type: "shadow"
+          damage_multiplier: 1000

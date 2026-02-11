@@ -72,6 +72,24 @@ class Player:
     created_at: datetime = field(default_factory=datetime.now)
     last_active: datetime = field(default_factory=datetime.now)
 
+    # 装备系统 - 槽位管理
+    equipment_slots: Dict[str, Optional[str]] = field(default_factory=lambda: {
+        "WEAPON": None,
+        "HELMET": None,
+        "ARMOR": None,
+        "GLOVES": None,
+        "BOOTS": None,
+        "BELT": None,
+        "AMULET": None,
+        "RING_LEFT": None,
+        "RING_RIGHT": None,
+        "ARTIFACT": None,
+    })
+
+    # 装备背包
+    inventory: List[str] = field(default_factory=list)
+    inventory_capacity: int = 50
+
     def get_combat_power(self) -> int:
         """计算战斗力"""
         base = (self.base_stats["attack"] + self.base_stats["speed"] + 
@@ -94,6 +112,30 @@ class Player:
         elif self.stage == CultivationStage.YUANYING:
             return 10000000  # 元婴→元神
         return 0
+
+    def equip_item(self, slot: str, equipment_id: str) -> Optional[str]:
+        """装备物品到指定槽位，返回被替换的装备ID"""
+        old = self.equipment_slots.get(slot)
+        self.equipment_slots[slot] = equipment_id
+        if equipment_id in self.inventory:
+            self.inventory.remove(equipment_id)
+        if old and old not in self.inventory:
+            self.inventory.append(old)
+        return old
+
+    def unequip_item(self, slot: str) -> Optional[str]:
+        """卸下指定槽位的装备"""
+        equipment_id = self.equipment_slots.get(slot)
+        if equipment_id:
+            self.equipment_slots[slot] = None
+            if len(self.inventory) < self.inventory_capacity:
+                self.inventory.append(equipment_id)
+                return equipment_id
+        return None
+
+    def get_equipped_ids(self) -> List[str]:
+        """获取所有已装备的装备ID"""
+        return [eid for eid in self.equipment_slots.values() if eid is not None]
 
 
 @dataclass

@@ -1,0 +1,83 @@
+rarities:
+  NORMAL:
+    name: "普通"
+    color: "#FFFFFF"
+    stat_multiplier: 1.0
+    affix_slots: 0
+    drop_weight: 1000
+    min_level: 1
+
+  MAGIC:
+    name: "魔法"
+    color: "#4169E1"
+    stat_multiplier: 1.2
+    affix_slots: 1
+    drop_weight: 500
+    min_level: 1
+
+  RARE:
+    name: "稀有"
+    color: "#FFD700"
+    stat_multiplier: 1.5
+    affix_slots: 2
+    drop_weight: 200
+    min_level: 10
+
+  EPIC:
+    name: "史诗"
+    color: "#A020F0"
+    stat_multiplier: 2.0
+    affix_slots: 3
+    drop_weight: 80
+    min_level: 20
+
+  LEGENDARY:
+    name: "传说"
+    color: "#FFA500"
+    stat_multiplier: 3.0
+    affix_slots: 4
+    drop_weight: 30
+    min_level: 30
+
+  MYTHIC:
+    name: "神话"
+    color: "#00CED1"
+    stat_multiplier: 4.0
+    affix_slots: 5
+    drop_weight: 10
+    min_level: 40
+
+  DIVINE:
+    name: "神圣"
+    color: "#FF69B4"
+    stat_multiplier: 5.0
+    affix_slots: 6
+    drop_weight: 3
+    min_level: 50
+
+  IMMORTAL:
+    name: "不朽"
+    color: "#FF0000"
+    stat_multiplier: 7.0
+    affix_slots: 7
+    drop_weight: 1
+    min_level: 60
+
+  ETHEREAL:
+    name: "虚无"
+    color: "#00FF00"
+    stat_multiplier: 10.0
+    affix_slots: 8
+    drop_weight: 0.1
+    min_level: 70
+
+migration_map:
+  COMMON: NORMAL
+  UNCOMMON: MAGIC
+  RARE: RARE
+  EPIC: EPIC
+  LEGENDARY: LEGENDARY
+  MYTHIC: MYTHIC
+  DIVINE: DIVINE
+  IMMORTAL: IMMORTAL
+  ETHEREAL: ETHEREAL

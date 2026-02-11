@@ -1,0 +1,205 @@
+prefixes:
+  - id: "sharp"
+    name: "锋利的"
+    type: "PREFIX"
+    stats:
+      attack: { min: 5, max: 20 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "flaming"
+    name: "烈焰"
+    type: "PREFIX"
+    stats:
+      fire_damage: { min: 10, max: 50 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "frozen"
+    name: "冰霜"
+    type: "PREFIX"
+    stats:
+      ice_damage: { min: 10, max: 50 }
+      slow: { min: 5, max: 15 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "lightning"
+    name: "雷电"
+    type: "PREFIX"
+    stats:
+      lightning_damage: { min: 10, max: 50 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "deadly"
+    name: "致命的"
+    type: "PREFIX"
+    stats:
+      crit_chance: { min: 2, max: 8 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES", "HEAD"]
+
+  - id: "devastating"
+    name: "毁灭的"
+    type: "PREFIX"
+    stats:
+      crit_damage: { min: 10, max: 40 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES", "HEAD"]
+
+  - id: "swift"
+    name: "迅捷的"
+    type: "PREFIX"
+    stats:
+      attack_speed: { min: 3, max: 12 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES", "BOOTS"]
+
+  - id: "penetrating"
+    name: "穿透的"
+    type: "PREFIX"
+    stats:
+      armor_penetration: { min: 5, max: 25 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES", "CHEST"]
+
+  - id: "vampiric"
+    name: "吸血"
+    type: "PREFIX"
+    stats:
+      life_steal: { min: 1, max: 5 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "poisonous"
+    name: "剧毒"
+    type: "PREFIX"
+    stats:
+      poison_damage: { min: 5, max: 30 }
+    weight: 100
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+suffixes:
+  - id: "of_strength"
+    name: "力量之"
+    type: "SUFFIX"
+    stats:
+      strength: { min: 3, max: 15 }
+    weight: 100
+    allowed_slots: ["CHEST", "LEGS", "SHOULDERS", "WEAPON"]
+
+  - id: "of_vitality"
+    name: "活力之"
+    type: "SUFFIX"
+    stats:
+      health: { min: 50, max: 200 }
+    weight: 100
+    allowed_slots: ["CHEST", "LEGS", "HEAD", "BOOTS"]
+
+  - id: "of_protection"
+    name: "守护之"
+    type: "SUFFIX"
+    stats:
+      defense: { min: 5, max: 25 }
+    weight: 100
+    allowed_slots: ["CHEST", "LEGS", "SHOULDERS", "HEAD"]
+
+  - id: "of_speed"
+    name: "疾风之"
+    type: "SUFFIX"
+    stats:
+      speed: { min: 3, max: 15 }
+    weight: 100
+    allowed_slots: ["BOOTS", "GLOVES", "LEGS", "CHEST"]
+
+  - id: "of_fortune"
+    name: "幸运之"
+    type: "SUFFIX"
+    stats:
+      drop_chance: { min: 2, max: 10 }
+    weight: 100
+    allowed_slots: ["HEAD", "CHEST", "LEGS", "SHOULDERS"]
+
+  - id: "of_regeneration"
+    name: "再生之"
+    type: "SUFFIX"
+    stats:
+      health_regen: { min: 2, max: 10 }
+    weight: 100
+    allowed_slots: ["CHEST", "LEGS", "HEAD", "SHOULDERS"]
+
+  - id: "of_wisdom"
+    name: "智慧之"
+    type: "SUFFIX"
+    stats:
+      intelligence: { min: 3, max: 15 }
+    weight: 100
+    allowed_slots: ["HEAD", "CHEST", "SHOULDERS", "GLOVES"]
+
+  - id: "of_agility"
+    name: "敏捷之"
+    type: "SUFFIX"
+    stats:
+      agility: { min: 3, max: 15 }
+      dodge: { min: 1, max: 3 }
+    weight: 100
+    allowed_slots: ["BOOTS", "GLOVES", "LEGS", "CHEST"]
+
+  - id: "of_resistance"
+    name: "抗性之"
+    type: "SUFFIX"
+    stats:
+      resistance_all: { min: 3, max: 15 }
+    weight: 100
+    allowed_slots: ["CHEST", "LEGS", "HEAD", "SHOULDERS"]
+
+  - id: "of_spirit"
+    name: "灵性之"
+    type: "SUFFIX"
+    stats:
+      spirit: { min: 10, max: 50 }
+    weight: 100
+    allowed_slots: ["HEAD", "CHEST", "LEGS", "SHOULDERS", "GLOVES"]
+
+legendary_affixes:
+  - id: "bloodthirst"
+    name: "嗜血"
+    type: "LEGENDARY"
+    stats:
+      life_leech_damage: { min: 3, max: 8 }
+    weight: 20
+    allowed_slots: ["WEAPON"]
+
+  - id: "fury"
+    name: "暴怒"
+    type: "LEGENDARY"
+    stats:
+      crit_damage_bonus: { min: 200, max: 400 }
+    weight: 20
+    allowed_slots: ["WEAPON", "CHEST"]
+
+  - id: "immortality"
+    name: "不灭"
+    type: "LEGENDARY"
+    stats:
+      revive_chance: { min: 10, max: 25 }
+    weight: 20
+    allowed_slots: ["CHEST", "HEAD"]
+
+  - id: "timewarp"
+    name: "时空裂隙"
+    type: "LEGENDARY"
+    stats:
+      time_warp_chance: { min: 5, max: 15 }
+      time_warp_damage: { min: 200, max: 200 }
+    weight: 20
+    allowed_slots: ["WEAPON", "GLOVES"]
+
+  - id: "dragonslayer"
+    name: "屠龙"
+    type: "LEGENDARY"
+    stats:
+      dragon_damage: { min: 50, max: 150 }
+    weight: 20
+    allowed_slots: ["WEAPON", "CHEST", "GLOVES"]

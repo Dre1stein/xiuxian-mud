@@ -1,0 +1,39 @@
+# Equipment Drop Tables Configuration
+
+drop_tables:
+  normal_monster:
+    common: 100
+    magical: 18
+    rare: 1.8
+
+  elite_monster:
+    common: 30
+    magical: 40
+    rare: 25
+    epic: 4.5
+    legendary: 0.5
+
+  boss:
+    magical: 20
+    rare: 40
+    epic: 30
+    legendary: 8
+    mythical: 1.8
+
+  world_boss:
+    rare: 20
+    epic: 40
+    legendary: 30
+    mythical: 8
+    divine: 1.8
+    immortal: 0.2
+
+  dungeon_chest:
+    common: 10
+    magical: 30
+    rare: 40
+    epic: 18
+    legendary: 2
+
+# Drop rates represent percentage chance (e.g., 100 = 100%, 0.2 = 0.2%)
+# Quality tiers: common, magical, rare, epic, legendary, mythical, divine, immortal

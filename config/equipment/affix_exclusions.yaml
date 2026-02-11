@@ -1,0 +1,33 @@
+# Equipment Affix Exclusions Configuration
+
+# Affixes within the same exclusion group cannot appear on the same item
+exclusion_groups:
+  element_damage:
+    name: "元素伤害互斥"
+    description: "Element damage affixes are mutually exclusive"
+    affixes:
+      - flaming
+      - frozen
+      - lightning
+      - poisonous
+
+  slayer:
+    name: "屠杀手互斥"
+    description: "Slayer affixes are mutually exclusive"
+    affixes:
+      - dragonslayer
+      - demonslayer
+      - undeadslayer
+
+  major_stat:
+    name: "主属性互斥"
+    description: "Major stat affixes are mutually exclusive"
+    affixes:
+      - titan
+      - sage
+      - phantom
+
+# When generating affixes for an item:
+# 1. Check all exclusion groups that contain the current affix
+# 2. Exclude any affixes from the same group
+# 3. This ensures no conflicting affixes appear on a single item

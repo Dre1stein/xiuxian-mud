@@ -9,6 +9,8 @@ import sys
 import random
 from datetime import datetime
 
+from src.web.equipment_routes import equipment_bp
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
 from src.data.simple_storage import save_player, load_player, load_player_by_name
@@ -17,6 +19,9 @@ from src.models.sect import SECT_PRESETS
 
 app = Flask(__name__)
 app.secret_key = 'xiuxian-simple-secret-key'
+
+# 注册装备系统蓝图
+app.register_blueprint(equipment_bp)
 
 
 def get_stage_from_level(level: int):
@@ -271,6 +276,8 @@ if __name__ == '__main__':
     print("   /         - 游戏主页")
     print("   /login    - 登录页面")
     print("   /register - 注册页面")
+    print("\n⚙️  系统模块:")
+    print("   装备系统已启用 - /api/equipment/*")
     print("\n⚠️  按 Ctrl+C 停止服务器")
     print("=" * 60 + "\n")
     
