@@ -1,0 +1,772 @@
+# 流派配置文件
+# 8个门派，每个门派5个流派，共40个流派
+# 每个流派有独特的核心属性、主属性、特色技能
+
+schools:
+  # ==================== 青云门（风系）5流派 ====================
+  - school_id: qingyun_yujian
+    name: 御剑
+    sect: QINGYUN
+    focus: attack
+    primary_stat: 敏捷
+    secondary_stat: 力量
+    description: 以御剑术追求极致剑道攻击
+    skills:
+      - 御剑术
+      - 飞剑诀
+      - 万剑归宗
+    passives:
+      - 剑意
+      - 御剑精通
+    bonuses:
+      attack: 0.2
+      sword_damage: 0.15
+    unlock_level: 20
+
+  - school_id: qingyun_fulu
+    name: 符箓
+    sect: QINGYUN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 悟性
+    description: 以符箓术施展各种法术
+    skills:
+      - 符箓术
+      - 雷符
+      - 符阵
+    passives:
+      - 符箓精通
+      - 法术增幅
+    bonuses:
+      spell_damage: 0.2
+      cast_speed: 0.15
+    unlock_level: 20
+
+  - school_id: qingyun_zhenfa
+    name: 阵法
+    sect: QINGYUN
+    focus: balance
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以阵法控场辅助队友
+    skills:
+      - 阵法
+      - 四象阵
+      - 八卦阵
+    passives:
+      - 阵法精通
+      - 控场增幅
+    bonuses:
+      crowd_control: 0.2
+      buff_duration: 0.15
+    unlock_level: 20
+
+  - school_id: qingyun_lianqi
+    name: 炼器
+    sect: QINGYUN
+    focus: defense
+    primary_stat: 智力
+    secondary_stat: 力量
+    description: 以炼器术强化装备
+    skills:
+      - 炼器术
+      - 附魔
+      - 神兵锻造
+    passives:
+      - 匠人精神
+      - 装备精通
+    bonuses:
+      equipment_bonus: 0.2
+      craft_success: 0.15
+    unlock_level: 20
+
+  - school_id: qingyun_yufeng
+    name: 御风
+    sect: QINGYUN
+    focus: speed
+    primary_stat: 敏捷
+    secondary_stat: 体质
+    description: 以御风术提升身法闪避
+    skills:
+      - 御风术
+      - 踏风诀
+      - 风行千里
+    passives:
+      - 风行步法
+      - 闪避精通
+    bonuses:
+      speed: 0.25
+      dodge: 0.2
+    unlock_level: 20
+
+  # ==================== 丹鼎门（火系）5流派 ====================
+  - school_id: danding_liandan
+    name: 炼丹
+    sect: DANDING
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 悟性
+    description: 以炼丹术炼制各种丹药
+    skills:
+      - 炼丹术
+      - 回春丹
+      - 九转金丹
+    passives:
+      - 药石精通
+      - 丹心仁术
+    bonuses:
+      healing: 0.25
+      buff_duration: 0.15
+    unlock_level: 20
+
+  - school_id: danding_yishu
+    name: 医术
+    sect: DANDING
+    focus: defense
+    primary_stat: 悟性
+    secondary_stat: 体质
+    description: 以医术救死扶伤
+    skills:
+      - 医术
+      - 起死回生
+      - 甘霖普降
+    passives:
+      - 医者仁心
+      - 治愈增幅
+    bonuses:
+      healing: 0.3
+      revive_chance: 0.1
+    unlock_level: 20
+
+  - school_id: danding_dushu
+    name: 毒术
+    sect: DANDING
+    focus: attack
+    primary_stat: 敏捷
+    secondary_stat: 智力
+    description: 以毒术杀人无形
+    skills:
+      - 毒术
+      - 万毒噬心
+      - 剧毒蚀骨
+    passives:
+      - 毒素精通
+      - 持续伤害
+    bonuses:
+      poison_damage: 0.3
+      poison_duration: 0.2
+    unlock_level: 20
+
+  - school_id: danding_yangsheng
+    name: 养生
+    sect: DANDING
+    focus: defense
+    primary_stat: 体质
+    secondary_stat: 悟性
+    description: 以养生术延年益寿
+    skills:
+      - 养生术
+      - 气功
+      - 长生诀
+    passives:
+      - 养生之道
+      - 生命恢复
+    bonuses:
+      hp_regen: 0.25
+      max_hp: 0.15
+    unlock_level: 20
+
+  - school_id: danding_yaoli
+    name: 药理
+    sect: DANDING
+    focus: balance
+    primary_stat: 智力
+    secondary_stat: 悟性
+    description: 以药理知识炼制丹药
+    skills:
+      - 药理学
+      - 辨药
+      - 炼药
+    passives:
+      - 药理精通
+      - 丹药增幅
+    bonuses:
+      potion_effect: 0.3
+      craft_success: 0.2
+    unlock_level: 20
+
+  # ==================== 万花谷（木系）5流派 ====================
+  - school_id: wanhua_yinlu
+    name: 音律
+    sect: WANHUA
+    focus: attack
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以音律术施展法术
+    skills:
+      - 音律术
+      - 高山流水
+      - 广陵散
+    passives:
+      - 音律共鸣
+      - 法术增幅
+    bonuses:
+      spell_damage: 0.2
+      cast_speed: 0.15
+    unlock_level: 20
+
+  - school_id: wanhua_shuhua
+    name: 书画
+    sect: WANHUA
+    focus: balance
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以书画术施展水墨法术
+    skills:
+      - 书画术
+      - 水墨剑
+      - 丹青妙笔
+    passives:
+      - 书画意境
+      - 法术增幅
+    bonuses:
+      spell_damage: 0.2
+      control_chance: 0.15
+    unlock_level: 20
+
+  - school_id: wanhua_qiyi
+    name: 棋艺
+    sect: WANHUA
+    focus: balance
+    primary_stat: 智力
+    secondary_stat: 悟性
+    description: 以棋艺布阵控场
+    skills:
+      - 棋艺
+      - 星罗棋布
+      - 天元局
+    passives:
+      - 棋道精通
+      - 控场增幅
+    bonuses:
+      crowd_control: 0.2
+      buff_duration: 0.15
+    unlock_level: 20
+
+  - school_id: wanhua_yidao
+    name: 医道
+    sect: WANHUA
+    focus: defense
+    primary_stat: 悟性
+    secondary_stat: 体质
+    description: 以医术救死扶伤
+    skills:
+      - 医道
+      - 起死回生
+      - 甘霖普降
+    passives:
+      - 医者仁心
+      - 治愈增幅
+    bonuses:
+      healing: 0.3
+      revive_chance: 0.1
+    unlock_level: 20
+
+  - school_id: wanhua_huayu
+    name: 花语
+    sect: WANHUA
+    focus: attack
+    primary_stat: 体质
+    secondary_stat: 智力
+    description: 以花语术召唤花灵
+    skills:
+      - 花语术
+      - 花海
+      - 花语缠绵
+    passives:
+      - 花灵契约
+      - 召唤增幅
+    bonuses:
+      summon_damage: 0.2
+      summon_duration: 0.15
+    unlock_level: 20
+
+  # ==================== 逍遥宗（虚系）5流派 ====================
+  - school_id: xiaoyao_xukong
+    name: 虚空
+    sect: XIAOYAO
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 力量
+    description: 以虚空术瞬移爆发
+    skills:
+      - 虚空术
+      - 虚空斩
+      - 破空击
+    passives:
+      - 虚空感知
+      - 空间掌控
+    bonuses:
+      burst_damage: 0.3
+      ignore_defense: 0.15
+    unlock_level: 20
+
+  - school_id: xiaoyao_huanshu
+    name: 幻术
+    sect: XIAOYAO
+    focus: attack
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以幻术迷惑敌人
+    skills:
+      - 幻术
+      - 镜花水月
+      - 幻境
+    passives:
+      - 幻术精通
+      - 精神压制
+    bonuses:
+      enemy_debuff: 0.3
+      mental_damage: 0.2
+    unlock_level: 20
+
+  - school_id: xiaoyao_dunfa
+    name: 遁法
+    sect: XIAOYAO
+    focus: speed
+    primary_stat: 敏捷
+    secondary_stat: 体质
+    description: 以遁法神出鬼没
+    skills:
+      - 遁法
+      - 踏雪无痕
+      - 万里神行
+    passives:
+      - 身法如风
+      - 隐匿精通
+    bonuses:
+      movement_speed: 0.3
+      stealth: 0.2
+    unlock_level: 20
+
+  - school_id: xiaoyao_xinfa
+    name: 心法
+    sect: XIAOYAO
+    focus: balance
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以心法提升精神境界
+    skills:
+      - 心法
+      - 太极图
+      - 阴阳调和
+    passives:
+      - 阴阳调和
+      - 伤害反弹
+    bonuses:
+      reflect_damage: 0.25
+      damage_reduction: 0.15
+    unlock_level: 20
+
+  - school_id: xiaoyao_xiaoyao
+    name: 逍遥
+    sect: XIAOYAO
+    focus: speed
+    primary_stat: 敏捷
+    secondary_stat: 悟性
+    description: 以逍遥游纵横天地
+    skills:
+      - 逍遥游
+      - 逍遥步
+      - 无相功
+    passives:
+      - 逍遥之心
+      - 身法如风
+    bonuses:
+      movement_speed: 0.35
+      dodge: 0.2
+    unlock_level: 20
+
+  # ==================== 蜀山派（雷系）5流派 ====================
+  - school_id: shushan_jianshu
+    name: 剑术
+    sect: SHUSHAN
+    focus: attack
+    primary_stat: 力量
+    secondary_stat: 敏捷
+    description: 以蜀山剑法追求极致伤害
+    skills:
+      - 蜀山剑法
+      - 天剑
+      - 万剑归宗
+    passives:
+      - 剑意凌厉
+      - 剑道至尊
+    bonuses:
+      attack: 0.3
+      sword_damage: 0.25
+    unlock_level: 20
+
+  - school_id: shushan_leifa
+    name: 雷法
+    sect: SHUSHAN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 力量
+    description: 以雷法术攻击敌人
+    skills:
+      - 雷法
+      - 紫霄神雷
+      - 引雷诀
+    passives:
+      - 雷霆之怒
+      - 麻痹精通
+    bonuses:
+      lightning_damage: 0.25
+      stun_chance: 0.15
+    unlock_level: 20
+
+  - school_id: shushan_yujian
+    name: 御剑
+    sect: SHUSHAN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 敏捷
+    description: 以御剑术远程打击
+    skills:
+      - 御剑术
+      - 剑阵
+      - 天剑降魔
+    passives:
+      - 剑气外放
+      - 飞剑精准
+    bonuses:
+      range: 0.3
+      aoe_damage: 0.2
+    unlock_level: 20
+
+  - school_id: shushan_jianzhen
+    name: 剑阵
+    sect: SHUSHAN
+    focus: balance
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以剑阵控场
+    skills:
+      - 剑阵
+      - 四象剑阵
+      - 八卦剑阵
+    passives:
+      - 剑阵精通
+      - 控场增幅
+    bonuses:
+      crowd_control: 0.2
+      aoe_damage: 0.15
+    unlock_level: 20
+
+  - school_id: shushan_jianyi
+    name: 剑意
+    sect: SHUSHAN
+    focus: attack
+    primary_stat: 悟性
+    secondary_stat: 力量
+    description: 以剑意化形增强战力
+    skills:
+      - 剑意
+      - 剑气纵横
+      - 剑神降世
+    passives:
+      - 剑意常驻
+      - 剑神加持
+    bonuses:
+      skill_damage: 0.3
+      buff_duration: 0.25
+    unlock_level: 20
+
+  # ==================== 昆仑派（冰系）5流派 ====================
+  - school_id: kunlun_bingfa
+    name: 冰法
+    sect: KUNLUN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 力量
+    description: 以冰法术攻击敌人
+    skills:
+      - 冰法术
+      - 冰锥术
+      - 暴风雪
+    passives:
+      - 冰属性亲和
+      - 法术增幅
+    bonuses:
+      ice_damage: 0.3
+      slow_chance: 0.2
+    unlock_level: 20
+
+  - school_id: kunlun_hanqi
+    name: 寒气
+    sect: KUNLUN
+    focus: defense
+    primary_stat: 体质
+    secondary_stat: 智力
+    description: 以寒气术降低敌人能力
+    skills:
+      - 寒气术
+      - 寒冰气场
+      - 绝对零度
+    passives:
+      - 寒气护体
+      - 敌人削弱
+    bonuses:
+      enemy_damage: -0.2
+      enemy_speed: -0.15
+    unlock_level: 20
+
+  - school_id: kunlun_xuewu
+    name: 雪舞
+    sect: KUNLUN
+    focus: balance
+    primary_stat: 敏捷
+    secondary_stat: 智力
+    description: 以雪舞术提升身法
+    skills:
+      - 雪舞术
+      - 漫天飞雪
+      - 雪舞步法
+    passives:
+      - 雪舞精通
+      - 身法增幅
+    bonuses:
+      dodge: 0.2
+      movement_speed: 0.15
+    unlock_level: 20
+
+  - school_id: kunlun_bingdun
+    name: 冰盾
+    sect: KUNLUN
+    focus: defense
+    primary_stat: 体质
+    secondary_stat: 智力
+    description: 以冰盾术保护自身
+    skills:
+      - 冰盾术
+      - 冰晶护盾
+      - 寒冰壁垒
+    passives:
+      - 冰盾守护
+      - 护盾增幅
+    bonuses:
+      defense: 0.25
+      shield_efficiency: 0.2
+    unlock_level: 20
+
+  - school_id: kunlun_bingfeng
+    name: 冰封
+    sect: KUNLUN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 敏捷
+    description: 以冰封术控制敌人
+    skills:
+      - 冰封术
+      - 绝对零度
+      - 万里冰封
+    passives:
+      - 冰属性亲和
+      - 冻结精通
+    bonuses:
+      freeze_chance: 0.25
+      slow_duration: 0.3
+    unlock_level: 20
+
+  # ==================== 幻音坊（音系）5流派 ====================
+  - school_id: yinyin_yinbo
+    name: 音波
+    sect: YINYIN
+    focus: attack
+    primary_stat: 敏捷
+    secondary_stat: 力量
+    description: 以音波术攻击敌人
+    skills:
+      - 音波术
+      - 音刃术
+      - 音爆
+    passives:
+      - 音波汇聚
+      - 音刃穿透
+    bonuses:
+      sound_damage: 0.3
+      attack_speed: 0.15
+    unlock_level: 20
+
+  - school_id: yinyin_meihuo
+    name: 魅惑
+    sect: YINYIN
+    focus: attack
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以魅惑术迷惑敌人
+    skills:
+      - 魅惑术
+      - 惑心术
+      - 倾城倾国
+    passives:
+      - 魅惑精通
+      - 精神干扰
+    bonuses:
+      control_chance: 0.25
+      mental_damage: 0.2
+    unlock_level: 20
+
+  - school_id: yinyin_huanyin
+    name: 幻音
+    sect: YINYIN
+    focus: balance
+    primary_stat: 智力
+    secondary_stat: 悟性
+    description: 以幻音术施展幻术
+    skills:
+      - 幻音术
+      - 镜花水月
+      - 幻境
+    passives:
+      - 幻音精通
+      - 精神压制
+    bonuses:
+      enemy_debuff: 0.3
+      mental_damage: 0.2
+    unlock_level: 20
+
+  - school_id: yinyin_qinyi
+    name: 琴艺
+    sect: YINYIN
+    focus: defense
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以琴艺疗伤增益队友
+    skills:
+      - 琴艺
+      - 高山流水
+      - 琴心剑胆
+    passives:
+      - 音律共鸣
+      - 治愈增幅
+    bonuses:
+      healing: 0.3
+      buff_effect: 0.2
+    unlock_level: 20
+
+  - school_id: yinyin_xiaosheng
+    name: 箫声
+    sect: YINYIN
+    focus: attack
+    primary_stat: 智力
+    secondary_stat: 敏捷
+    description: 以箫声惑心控制敌人
+    skills:
+      - 箫声术
+      - 魔音贯耳
+      - 引魂箫
+    passives:
+      - 音波掌控
+      - 精神干扰
+    bonuses:
+      control_chance: 0.25
+      mental_damage: 0.2
+    unlock_level: 20
+
+  # ==================== 血魔宗（血系）5流派 ====================
+  - school_id: xuemo_xueshu
+    name: 血术
+    sect: XUEMO
+    focus: attack
+    primary_stat: 力量
+    secondary_stat: 敏捷
+    description: 以血术攻击敌人
+    skills:
+      - 血术
+      - 血魔噬
+      - 血影遁
+    passives:
+      - 血魔之躯
+      - 嗜血本能
+    bonuses:
+      lifesteal: 0.3
+      attack_speed: 0.15
+    unlock_level: 20
+
+  - school_id: xuemo_xixue
+    name: 吸血
+    sect: XUEMO
+    focus: attack
+    primary_stat: 敏捷
+    secondary_stat: 体质
+    description: 以吸血术恢复生命
+    skills:
+      - 吸血术
+      - 嗜血术
+      - 浴血奋战
+    passives:
+      - 嗜血本能
+      - 狂暴意志
+    bonuses:
+      lifesteal: 0.35
+      lifesteal_low_hp: 0.5
+    unlock_level: 20
+
+  - school_id: xuemo_mohua
+    name: 魔化
+    sect: XUEMO
+    focus: attack
+    primary_stat: 力量
+    secondary_stat: 体质
+    description: 以魔化术增强战力
+    skills:
+      - 魔化术
+      - 血魔化身
+      - 天魔解体
+    passives:
+      - 魔化之躯
+      - 狂暴意志
+    bonuses:
+      attack: 0.3
+      attack_speed: 0.2
+    unlock_level: 20
+
+  - school_id: xuemo_xuedun
+    name: 血盾
+    sect: XUEMO
+    focus: defense
+    primary_stat: 体质
+    secondary_stat: 力量
+    description: 以血盾术保护自身
+    skills:
+      - 血盾术
+      - 鲜血护盾
+      - 血盾反震
+    passives:
+      - 血盾守护
+      - 反伤专精
+    bonuses:
+      defense: 0.25
+      reflect_damage: 0.2
+    unlock_level: 20
+
+  - school_id: xuemo_xueji
+    name: 血祭
+    sect: XUEMO
+    focus: balance
+    primary_stat: 悟性
+    secondary_stat: 智力
+    description: 以血祭术换取力量
+    skills:
+      - 血祭术
+      - 血海滔天
+      - 鲜血献祭
+    passives:
+      - 血祭精通
+      - 牺牲增幅
+    bonuses:
+      burst_damage: 0.3
+      spell_damage: 0.2
+    unlock_level: 20

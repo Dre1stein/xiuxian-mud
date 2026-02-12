@@ -420,69 +420,88 @@ SECT_PRESETS = {
 # ============================================================================
 
 SECT_ADVANTAGES = {
-    # -------------------------------------------------------------------------
-    # 青云门(风) 克制关系
-    # -------------------------------------------------------------------------
-    (SectType.QINGYUN, SectType.WANHUA): 1.25,   # 风吹散木 - 风力强劲时能摧折花木
-    (SectType.QINGYUN, SectType.XIAOYAO): 1.20,  # 风破虚 - 风能吹散虚幻之气
-    (SectType.QINGYUN, SectType.SHUSHAN): 0.80,  # 雷破风 - 雷电能劈开风障
-    (SectType.QINGYUN, SectType.KUNLUN): 0.85,   # 冰封风 - 冰霜能冻结风流
+    # =========================================================================
+    # 门派克制关系矩阵 - 8×8完整版
+    # =========================================================================
+    # 格式: (攻击方门派, 防守方门派): 伤害倍率
+    #   1.3 = 克制关系 (攻击方优势)
+    #   0.7 = 被克关系 (攻击方劣势)
+    #   未列出 = 1.0 (中立关系)
+    #
+    # 克制矩阵设计 (基于五行相克):
+    #   青云门(风) → 克: 万花谷, 逍遥宗 | 被克: 蜀山派, 昆仑派
+    #   丹鼎门(火) → 克: 昆仑派, 蜀山派 | 被克: 万花谷, 逍遥宗
+    #   万花谷(木) → 克: 逍遥宗, 血魔宗 | 被克: 青云门, 丹鼎门
+    #   逍遥宗(虚) → 克: 丹鼎门, 昆仑派 | 被克: 万花谷, 幻音坊
+    #   蜀山派(雷) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 血魔宗
+    #   昆仑派(冰) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 逍遥宗
+    #   幻音坊(音) → 克: 逍遥宗, 血魔宗 | 被克: 蜀山派, 昆仑派
+    #   血魔宗(血) → 克: 蜀山派, 丹鼎门 | 被克: 万花谷, 幻音坊
+    # =========================================================================
 
     # -------------------------------------------------------------------------
-    # 丹鼎门(火) 克制关系
+    # 青云门(风) - 克: 万花谷, 逍遥宗 | 被克: 蜀山派, 昆仑派
     # -------------------------------------------------------------------------
-    (SectType.DANDING, SectType.KUNLUN): 1.30,   # 火熔冰 - 烈火能融化冰雪
-    (SectType.DANDING, SectType.SHUSHAN): 1.20,  # 火炼金 - 火能熔炼金属剑器
-    (SectType.DANDING, SectType.WANHUA): 0.80,   # 木生火反噬 - 木虽生火但灵木能吸纳火焰
-    (SectType.DANDING, SectType.XIAOYAO): 0.85,  # 虚空无物可燃 - 虚幻之道不受火焰伤害
+    (SectType.QINGYUN, SectType.WANHUA): 1.3,   # 风摧木 - 风力摧折花木
+    (SectType.QINGYUN, SectType.XIAOYAO): 1.3,  # 风破虚 - 风吹散虚幻之气
+    (SectType.QINGYUN, SectType.SHUSHAN): 0.7,  # 雷破风 - 雷电能劈开风障
+    (SectType.QINGYUN, SectType.KUNLUN): 0.7,   # 冰封风 - 冰霜冻结风流
 
     # -------------------------------------------------------------------------
-    # 万花谷(木) 克制关系
+    # 丹鼎门(火) - 克: 昆仑派, 蜀山派 | 被克: 万花谷, 逍遥宗
     # -------------------------------------------------------------------------
-    (SectType.WANHUA, SectType.XIAOYAO): 1.25,   # 木克虚 - 万物生长能填满虚空
-    (SectType.WANHUA, SectType.XUEMO): 1.30,     # 灵药净血 - 灵药能净化血污之术
-    (SectType.WANHUA, SectType.QINGYUN): 0.80,   # 风折木 - 狂风能摧折花木
-    (SectType.WANHUA, SectType.DANDING): 1.20,   # 木克火吸纳 - 灵木吸纳火焰化为己用
+    (SectType.DANDING, SectType.KUNLUN): 1.3,   # 火熔冰 - 烈火融化冰雪
+    (SectType.DANDING, SectType.SHUSHAN): 1.3,  # 火炼金 - 火熔炼金属剑器
+    (SectType.DANDING, SectType.WANHUA): 0.7,  # 木吸火 - 灵木吸纳火焰
+    (SectType.DANDING, SectType.XIAOYAO): 0.7,  # 虚不受火 - 虚空不受火伤
 
     # -------------------------------------------------------------------------
-    # 逍遥宗(虚) 克制关系
+    # 万花谷(木) - 克: 逍遥宗, 血魔宗 | 被克: 青云门, 丹鼎门
     # -------------------------------------------------------------------------
-    (SectType.XIAOYAO, SectType.DANDING): 1.25,  # 虚无不受火 - 虚空之道不受火焰伤害
-    (SectType.XIAOYAO, SectType.KUNLUN): 1.20,   # 虚不受冰 - 虚幻之道难以被冰封
-    (SectType.XIAOYAO, SectType.WANHUA): 0.80,   # 实克虚 - 实体之物能填充虚空
-    (SectType.XIAOYAO, SectType.YINYIN): 0.75,   # 音扰虚 - 音律能扰乱虚静之心
+    (SectType.WANHUA, SectType.XIAOYAO): 1.3,   # 木填虚 - 万物生长填虚空
+    (SectType.WANHUA, SectType.XUEMO): 1.3,     # 药净血 - 灵药净化血污
+    (SectType.WANHUA, SectType.QINGYUN): 0.7,   # 风折木 - 狂风摧折花木
+    (SectType.WANHUA, SectType.DANDING): 0.7,   # 火焚木 - 烈火焚烧花木
 
     # -------------------------------------------------------------------------
-    # 蜀山派(雷) 克制关系
+    # 逍遥宗(虚) - 克: 丹鼎门, 昆仑派 | 被克: 万花谷, 幻音坊
     # -------------------------------------------------------------------------
-    (SectType.SHUSHAN, SectType.QINGYUN): 1.25,  # 雷破风 - 雷电能劈开风障
-    (SectType.SHUSHAN, SectType.YINYIN): 1.20,   # 雷破音 - 雷鸣之声能震破音律
-    (SectType.SHUSHAN, SectType.DANDING): 0.80,  # 火炼金 - 火能熔炼金属剑器
-    (SectType.SHUSHAN, SectType.XUEMO): 0.75,    # 血污金 - 血污之术能腐蚀剑器
+    (SectType.XIAOYAO, SectType.DANDING): 1.3,  # 虚避火 - 虚空不受火焰
+    (SectType.XIAOYAO, SectType.KUNLUN): 1.3,   # 虚避冰 - 虚幻难被冰封
+    (SectType.XIAOYAO, SectType.WANHUA): 0.7,   # 实填虚 - 实物填充虚空
+    (SectType.XIAOYAO, SectType.YINYIN): 0.7,   # 音扰虚 - 音律扰乱虚心
 
     # -------------------------------------------------------------------------
-    # 昆仑派(冰) 克制关系
+    # 蜀山派(雷) - 克: 青云门, 幻音坊 | 被克: 丹鼎门, 血魔宗
     # -------------------------------------------------------------------------
-    (SectType.KUNLUN, SectType.QINGYUN): 1.15,   # 冰封风 - 冰霜能冻结风流
-    (SectType.KUNLUN, SectType.YINYIN): 1.25,    # 冰静音 - 极寒能冻结音波传播
-    (SectType.KUNLUN, SectType.DANDING): 0.70,   # 火熔冰 - 烈火能融化冰雪
-    (SectType.KUNLUN, SectType.XIAOYAO): 0.80,   # 虚不受冰 - 虚幻之道难以被冰封
+    (SectType.SHUSHAN, SectType.QINGYUN): 1.3,  # 雷破风 - 雷电劈开风障
+    (SectType.SHUSHAN, SectType.YINYIN): 1.3,   # 雷破音 - 雷鸣震破音律
+    (SectType.SHUSHAN, SectType.DANDING): 0.7,  # 火熔金 - 火熔炼剑器
+    (SectType.SHUSHAN, SectType.XUEMO): 0.7,    # 血蚀金 - 血污腐蚀剑器
 
     # -------------------------------------------------------------------------
-    # 幻音坊(音) 克制关系
+    # 昆仑派(冰) - 克: 青云门, 幻音坊 | 被克: 丹鼎门, 逍遥宗
     # -------------------------------------------------------------------------
-    (SectType.YINYIN, SectType.XIAOYAO): 1.25,   # 音扰虚 - 音律能扰乱虚静之心
-    (SectType.YINYIN, SectType.XUEMO): 1.20,     # 清音净血 - 清心之音能净化血术
-    (SectType.YINYIN, SectType.SHUSHAN): 0.80,   # 雷破音 - 雷鸣之声能震破音律
-    (SectType.YINYIN, SectType.KUNLUN): 0.75,    # 冰静音 - 极寒能冻结音波传播
+    (SectType.KUNLUN, SectType.QINGYUN): 1.3,   # 冰封风 - 冰霜冻结风流
+    (SectType.KUNLUN, SectType.YINYIN): 1.3,    # 冰静音 - 极寒冻结音波
+    (SectType.KUNLUN, SectType.DANDING): 0.7,   # 火熔冰 - 烈火融化冰雪
+    (SectType.KUNLUN, SectType.XIAOYAO): 0.7,   # 虚避冰 - 虚幻难被冰封
 
     # -------------------------------------------------------------------------
-    # 血魔宗(血) 克制关系
+    # 幻音坊(音) - 克: 逍遥宗, 血魔宗 | 被克: 蜀山派, 昆仑派
     # -------------------------------------------------------------------------
-    (SectType.XUEMO, SectType.SHUSHAN): 1.25,    # 血污金 - 血污之术能腐蚀剑器
-    (SectType.XUEMO, SectType.DANDING): 1.15,    # 血灭火 - 血海能浇灭烈火
-    (SectType.XUEMO, SectType.WANHUA): 0.70,     # 灵药净血 - 灵药能净化血污之术
-    (SectType.XUEMO, SectType.YINYIN): 0.80,     # 清音净血 - 清心之音能净化血术
+    (SectType.YINYIN, SectType.XIAOYAO): 1.3,   # 音扰虚 - 音律扰乱虚心
+    (SectType.YINYIN, SectType.XUEMO): 1.3,     # 音净血 - 清音净化血术
+    (SectType.YINYIN, SectType.SHUSHAN): 0.7,   # 雷破音 - 雷鸣震破音律
+    (SectType.YINYIN, SectType.KUNLUN): 0.7,    # 冰静音 - 极寒冻结音波
+
+    # -------------------------------------------------------------------------
+    # 血魔宗(血) - 克: 蜀山派, 丹鼎门 | 被克: 万花谷, 幻音坊
+    # -------------------------------------------------------------------------
+    (SectType.XUEMO, SectType.SHUSHAN): 1.3,    # 血蚀金 - 血污腐蚀剑器
+    (SectType.XUEMO, SectType.DANDING): 1.3,    # 血灭火 - 血海浇灭烈火
+    (SectType.XUEMO, SectType.WANHUA): 0.7,     # 药净血 - 灵药净化血污
+    (SectType.XUEMO, SectType.YINYIN): 0.7,     # 音净血 - 清音净化血术
 }
 
 

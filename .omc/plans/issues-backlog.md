@@ -86,65 +86,68 @@
 
 ---
 
-## 🟡 Phase 1: Foundation (Week 1)
+## 🟡 Phase 1: Foundation (Week 1) ✅ COMPLETED
 
-### Issue #1: 流派数据外置到 YAML
+### Issue #1: 流派数据外置到 YAML ✅
 **Priority:** P1 (High)
 **Type:** Feature
 **Estimate:** M (2-3 days)
+**Status:** COMPLETED (2026-02-12)
 **Dependencies:** Phase 0 complete
 
 **Subtasks:**
-| # | Task | Est. |
-|---|------|------|
-| 1.1 | 创建 40 流派的 YAML schema | S |
-| 1.2 | 迁移所有 40 个流派到 `config/schools.yaml` | M |
-| 1.3 | 创建 SchoolConfigLoader 类 | S |
-| 1.4 | 更新 `school.py` 使用 loader | S |
-| 1.5 | 添加必填字段验证 | S |
+| # | Task | Est. | Status |
+|---|------|------|--------|
+| 1.1 | 创建 40 流派的 YAML schema | S | ✅ |
+| 1.2 | 迁移所有 40 个流派到 `config/schools.yaml` | M | ✅ |
+| 1.3 | 创建 SchoolConfigLoader 类 | S | ✅ |
+| 1.4 | 更新 `school.py` 使用 loader | S | ✅ |
+| 1.5 | 添加必填字段验证 | S | ✅ |
 
-**Files to Create:**
-- `config/schools.yaml`
+**Files Created:**
+- `config/schools.yaml` - 40 schools (8 sects × 5 schools)
 
-**Files to Modify:**
-- `src/models/school.py`
+**Files Modified:**
+- `src/models/school.py` - SchoolConfigLoader with caching
 
 **Acceptance Criteria:**
-- [ ] 所有 40 个流派从 `config/schools.yaml` 正确加载
-- [ ] 缺失字段在启动时报错
-- [ ] 现有功能不受影响
+- [x] 所有 40 个流派从 `config/schools.yaml` 正确加载
+- [x] 缺失字段在启动时报错
+- [x] 现有功能不受影响
+- [x] 36 school-related tests passing
 
 ---
 
-### Issue #2: 完善门派克制关系
+### Issue #2: 完善门派克制关系 ✅
 **Priority:** P1 (High)
 **Type:** Feature
 **Estimate:** S (1 day)
+**Status:** COMPLETED (2026-02-12)
 **Dependencies:** Issue #0.1
 
 **Subtasks:**
-| # | Task | Est. |
-|---|------|------|
-| 2.1 | 设计完整的 8x8 克制矩阵 | S |
-| 2.2 | 实现石头剪刀布逻辑 | S |
-| 2.3 | 添加克制关系文档注释 | S |
-| 2.4 | 同步更新 SECT_ADVANTAGES | S |
-| 2.5 | 添加 `get_sect_counter_info()` 辅助函数 | S |
+| # | Task | Est. | Status |
+|---|------|------|--------|
+| 2.1 | 设计完整的 8x8 克制矩阵 | S | ✅ |
+| 2.2 | 实现石头剪刀布逻辑 | S | ✅ |
+| 2.3 | 添加克制关系文档注释 | S | ✅ |
+| 2.4 | 同步更新 SECT_ADVANTAGES | S | ✅ |
+| 2.5 | 添加 `get_sect_counter_info()` 辅助函数 | S | ✅ |
 
-**Files to Modify:**
-- `src/models/player.py`
-- `src/models/sect.py`
+**Files Modified:**
+- `src/models/player.py` - SECT_ADVANTAGES with 32 entries
+- `src/models/sect.py` - Counter relationships
 
-**Counter Matrix Design:**
+**Counter Matrix Implemented:**
 ```
-青云门(风) → 克: 万花谷, 逍遥宗 | 被克: 蜀山派, 昆仑派
-丹鼎门(火) → 克: 昆仑派, 蜀山派 | 被克: 万花谷, 逍遥宗
-万花谷(木) → 克: 逍遥宗, 血魔宗 | 被克: 青云门, 丹鼎门
-逍遥宗(虚) → 克: 丹鼎门, 昆仑派 | 被克: 万花谷, 幻音坊
-蜀山派(雷) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 血魔宗
-昆仑派(冰) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 逍遥宗
-幻音坊(音) → 克: 逍遥宗, 血魔宗 | 被克: 蜀山派, 昆仑派
-血魔宗(血) → 克: 蜀山派, 丹鼎门 | 被克: 万花谷, 幻音坊
+青云门(风) → 克: 万花谷, 逍遥宗 | 被克: 蜀山派, 昆仑派 (1.3x/0.7x)
+丹鼎门(火) → 克: 昆仑派, 蜀山派 | 被克: 万花谷, 逍遥宗 (1.3x/0.7x)
+万花谷(木) → 克: 逍遥宗, 血魔宗 | 被克: 青云门, 丹鼎门 (1.3x/0.7x)
+逍遥宗(虚) → 克: 丹鼎门, 昆仑派 | 被克: 万花谷, 幻音坊 (1.3x/0.7x)
+蜀山派(雷) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 血魔宗 (1.3x/0.7x)
+昆仑派(冰) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 逍遥宗 (1.3x/0.7x)
+幻音坊(音) → 克: 逍遥宗, 血魔宗 | 被克: 蜀山派, 昆仑派 (1.3x/0.7x)
+血魔宗(血) → 克: 蜀山派, 丹鼎门 | 被克: 万花谷, 幻音坊 (1.3x/0.7x)
 ```
 
 ---
@@ -156,6 +159,7 @@
 **Type:** Feature
 **Estimate:** M (2-3 days)
 **Dependencies:** Issue #1
+**Status:** Pending
 
 **Subtasks:**
 | # | Task | Est. |
@@ -179,38 +183,36 @@
 
 ---
 
-### Issue #4: 数据库存储层
+### Issue #4: 数据库存储层 ✅
 **Priority:** P2 (Medium)
 **Type:** Architecture
 **Estimate:** L (3-4 days)
+**Status:** COMPLETED (2026-02-12)
 **Dependencies:** None
 
 **Subtasks:**
-| # | Task | Est. |
-|---|------|------|
-| 4.1 | 设计 PlayerStorageInterface 抽象类 | S |
-| 4.2 | 创建 SQLite schema | S |
-| 4.3 | 实现 SQLiteStorage | M |
-| 4.4 | 重构 JSONStorage 实现接口 | S |
-| 4.5 | 创建 StorageFactory | S |
-| 4.6 | 添加迁移脚本 | M |
-| 4.7 | 更新所有存储消费者 | S |
+| # | Task | Est. | Status |
+|---|------|------|--------|
+| 4.1 | 设计 PlayerStorageInterface 抽象类 | S | ✅ |
+| 4.2 | 创建 SQLite schema | S | ✅ |
+| 4.3 | 实现 SQLiteStorage | M | ✅ |
+| 4.4 | 重构 JSONStorage 实现接口 | S | ✅ |
+| 4.5 | 创建 StorageFactory | S | ✅ |
+| 4.6 | 添加迁移脚本 | M | ✅ |
+| 4.7 | 更新所有存储消费者 | S | ✅ |
 
-**Files to Create:**
-- `src/data/storage_interface.py`
-- `src/data/sqlite_storage.py`
-- `src/data/storage_factory.py`
-- `migrations/schema.sql`
+**Files Created:**
+- `src/data/storage_interface.py` - PlayerStorage abstract class (11 methods)
+- `src/data/sqlite_storage.py` - SQLite implementation (334 lines)
+- `src/data/json_storage.py` - JSON implementation (254 lines)
+- `src/data/storage_factory.py` - Factory pattern
+- `migrations/schema.sql` - Database schema with version tracking
 
-**Files to Modify:**
-- `src/data/simple_storage.py` → 重命名为 `json_storage.py`
-- `src/web/simple_app.py`
-- `config/settings.yaml`
-
-**Schema Notes:**
-- SQLite 使用 TEXT 而非 JSON 类型
-- 添加 schema_version 表用于迁移追踪
-- 迁移脚本需包含 downgrade 方法
+**Acceptance Criteria:**
+- [x] Both storage types implement same interface
+- [x] Factory returns configured storage type
+- [x] Combat session persistence working
+- [x] 33 storage tests passing
 
 ---
 
@@ -274,33 +276,41 @@
 
 ## 🟢 Phase 4: Quality (Week 4)
 
-### Issue #7: 添加测试覆盖
+### Issue #7: 添加测试覆盖 ✅
 **Priority:** P3 (Low)
 **Type:** Quality
 **Estimate:** M (2-3 days)
+**Status:** COMPLETED (2026-02-12)
 **Dependencies:** None
 
 **Subtasks:**
-| # | Task | Est. |
-|---|------|------|
-| 7.1 | 配置 pytest 环境 | S |
-| 7.2 | 战斗系统测试 | M |
-| 7.3 | 装备生成测试 | M |
-| 7.4 | 伤害计算测试 | M |
-| 7.5 | 流派系统测试 | S |
-| 7.6 | 存储层测试 | S |
-| 7.7 | 达到 70%+ 覆盖率 | S |
+| # | Task | Est. | Status |
+|---|------|------|--------|
+| 7.1 | 配置 pytest 环境 | S | ✅ |
+| 7.2 | 战斗系统测试 | M | ✅ |
+| 7.3 | 装备生成测试 | M | ✅ |
+| 7.4 | 伤害计算测试 | M | ✅ |
+| 7.5 | 流派系统测试 | S | ✅ |
+| 7.6 | 存储层测试 | S | ✅ |
+| 7.7 | 达到 70%+ 覆盖率 | S | ✅ |
 
-**Note:** `tests/` 目录已存在，扩展现有结构
+**Test Files Created/Extended:**
+- `tests/conftest.py` - Shared fixtures
+- `tests/test_damage.py` - 24 tests (Element, Multipliers, Calculator, Healing)
+- `tests/test_schools.py` - 37 tests (SchoolFocus, Progress, ConfigLoader)
+- `tests/test_storage.py` - 33 tests (JSON/SQLite, Combat Sessions)
+- `tests/test_combat.py` - 46 tests (CombatUnit, Skills, AOE, SectAdvantage)
+- `tests/test_equipment.py` - 51 tests (Rarity, Slots, Affixes, Stats)
 
-**Files to Create:**
-- `tests/conftest.py`
-- `tests/test_combat.py`
-- `tests/test_equipment.py`
-- `tests/test_damage.py`
-- `tests/test_schools.py`
-- `tests/test_storage.py`
-- `tests/fixtures/`
+**Test Results:**
+```
+191 passed in 2.67s
+```
+
+**Acceptance Criteria:**
+- [x] All core systems have test coverage
+- [x] Tests run reliably without flaky failures
+- [x] Fixtures support test isolation
 
 ---
 
@@ -361,12 +371,13 @@ Phase 3-4 (Enhancement & Quality)
 | Phase | Issues | Estimate | Status |
 |-------|--------|----------|--------|
 | Phase 0 | 4 critical bugs | ~5 hours | ✅ COMPLETED |
-| Phase 1 | #1, #2 | ~4 days | Pending |
-| Phase 2 | #3, #4 | ~5 days | Pending |
+| Phase 1 | #1, #2 | ~4 days | ✅ COMPLETED |
+| Phase 2 | #3, #4 | ~5 days | Partial (#4 ✅, #3 Pending) |
 | Phase 3 | #5, #6 | ~4 days | Pending |
-| Phase 4 | #7, #8 | ~3 days | Pending |
+| Phase 4 | #7, #8 | ~3 days | Partial (#7 ✅, #8 Pending) |
 
 **Total Estimate:** ~4 weeks (including bug fixes)
+**Current Progress:** 6 of 12 issues completed (50%)
 
 ---
 
@@ -422,9 +433,19 @@ Phase 3-4 (Enhancement & Quality)
 
 ## 📋 Next Steps (Recommended Priority)
 
-1. **Issue #1: 流派数据外置到 YAML** - 数据配置化
-2. **Issue #2: 完善门派克制关系** - 8x8克制矩阵
-3. **Issue #4: 数据库存储层** - SQLite持久化
-4. **Issue #7: 添加测试覆盖** - 单元测试
+1. **Issue #3: 添加流派进度系统** - 技能解锁树、精通加成
+2. **Issue #5: 战斗系统持久化** - 会话恢复、战斗日志
+3. **Issue #6: 经验曲线优化** - 突破挑战、XP加成
+4. **Issue #8: API 文档** - Swagger UI、请求/响应 schema
 
+---
 
+## ✅ Completed Issues (2026-02-12)
+
+| Issue | Description | Completion Date |
+|-------|-------------|-----------------|
+| #0.1-0.4 | Critical Bug Fixes | 2026-02-12 |
+| #1 | Schools YAML Configuration | 2026-02-12 |
+| #2 | 8x8 Sect Counter Matrix | 2026-02-12 |
+| #4 | SQLite Storage Layer | 2026-02-12 |
+| #7 | Test Coverage (191 tests) | 2026-02-12 |
