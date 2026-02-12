@@ -1,0 +1,119 @@
+time_curve:
+  total_online_hours: 1000
+  total_offline_days: 1160
+
+  default_daily_play_hours: 1.5
+  offline_efficiency_rate: 0.20
+
+  stages:
+    - name: 炼气期
+      index: 0
+      level_start: 1
+      level_end: 99
+      online_hours: 20
+      offline_days: 10
+      time_multiplier: 1.0
+
+    - name: 筑基期
+      index: 1
+      level_start: 100
+      level_end: 199
+      online_hours: 40
+      offline_days: 15
+      time_multiplier: 2.0
+
+    - name: 金丹期
+      index: 2
+      level_start: 200
+      level_end: 299
+      online_hours: 80
+      offline_days: 25
+      time_multiplier: 2.0
+
+    - name: 元婴期
+      index: 3
+      level_start: 300
+      level_end: 499
+      online_hours: 120
+      offline_days: 40
+      time_multiplier: 1.5
+
+    - name: 元神期
+      index: 4
+      level_start: 500
+      level_end: 999
+      online_hours: 100
+      offline_days: 50
+      time_multiplier: 0.8
+
+    - name: 化神期
+      index: 5
+      level_start: 1000
+      level_end: 1499
+      online_hours: 100
+      offline_days: 60
+      time_multiplier: 1.0
+
+    - name: 炼虚期
+      index: 6
+      level_start: 1500
+      level_end: 1999
+      online_hours: 120
+      offline_days: 70
+      time_multiplier: 1.2
+
+    - name: 合体期
+      index: 7
+      level_start: 2000
+      level_end: 2499
+      online_hours: 140
+      offline_days: 80
+      time_multiplier: 1.2
+
+    - name: 大乘期
+      index: 8
+      level_start: 2500
+      level_end: 2999
+      online_hours: 80
+      offline_days: 90
+      time_multiplier: 0.6
+
+    - name: 渡劫期
+      index: 9
+      level_start: 3000
+      level_end: 3499
+      online_hours: 60
+      offline_days: 100
+      time_multiplier: 0.75
+
+    - name: 真仙境
+      index: 10
+      level_start: 3500
+      level_end: 3999
+      online_hours: 50
+      offline_days: 120
+      time_multiplier: 0.8
+
+    - name: 金仙境
+      index: 11
+      level_start: 4000
+      level_end: 4499
+      online_hours: 30
+      offline_days: 140
+      time_multiplier: 0.6
+
+    - name: 太乙境
+      index: 12
+      level_start: 4500
+      level_end: 4999
+      online_hours: 20
+      offline_days: 160
+      time_multiplier: 0.7
+
+    - name: 大罗境
+      index: 13
+      level_start: 5000
+      level_end: 9999
+      online_hours: 40
+      offline_days: 200
+      time_multiplier: 2.0

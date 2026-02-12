@@ -4,7 +4,7 @@ from __future__ import annotations
 """
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 from enum import Enum
 from datetime import datetime
 
@@ -16,6 +16,15 @@ class CultivationStage(Enum):
     JINDAN = "金丹期"
     YUANYING = "元婴期"
     YUANSHEN = "元神期"
+    HUASHEN = "化神期"
+    LIANXU = "炼虚期"
+    HETI = "合体期"
+    DACHENG = "大乘期"
+    DUJIE = "渡劫期"
+    ZHENXIAN = "真仙境"
+    JINXIAN = "金仙境"
+    TAIYI = "太乙境"
+    DALUO = "大罗境"
 
 
 class SectType(Enum):
@@ -25,6 +34,9 @@ class SectType(Enum):
     WANHUA = "万花谷"
     XIAOYAO = "逍遥宗"
     SHUSHAN = "蜀山派"
+    KUNLUN = "昆仑派"
+    YINYIN = "幻音坊"
+    XUEMO = "血魔宗"
 
 
 class ItemQuality(Enum):
@@ -89,6 +101,38 @@ class Player:
     # 装备背包
     inventory: List[str] = field(default_factory=list)
     inventory_capacity: int = 50
+
+    # 流派进度
+    school_progress: Dict[str, Dict] = field(default_factory=dict)
+
+    # === Long-term Progression Fields ===
+    # Playtime tracking
+    total_playtime_hours: float = 0.0  # 累计在线时长
+
+    # Offline growth tracking
+    last_offline_claim: Optional[str] = None  # ISO datetime string
+
+    # Login streak
+    login_streak: int = 0
+    last_login_date: Optional[str] = None  # ISO date string
+
+    # Catch-up bonus
+    catch_up_bonus: Dict[str, Any] = field(default_factory=lambda: {
+        "tier": "none",
+        "expires_at": None,
+        "instant_claimed": False,
+    })
+
+    # Combat stats
+    total_combats: int = 0
+    total_victories: int = 0
+
+    # Milestone claims
+    milestone_claims: Dict[str, str] = field(default_factory=dict)  # milestone_id -> claimed_at
+
+    # Titles
+    titles: List[str] = field(default_factory=list)
+    active_title: Optional[str] = None
 
     def get_combat_power(self) -> int:
         """计算战斗力"""
@@ -295,22 +339,210 @@ SECT_PRESETS = {
             "crit": 15
         },
         "skills": ["蜀山剑法", "八卦掌法", "金刚伏魔功", "内功心法"]
+    },
+    SectType.KUNLUN: {
+        "name": "昆仑派",
+        "type": SectType.KUNLUN,
+        "description": "以剑术、冰系法术、防御著称",
+        "cultivation": 999,
+        "title": "昆仑仙尊",
+        "color": "#00CED1",
+        "stats": {
+            "attack": 25,
+            "defense": 30,
+            "ice_damage": 20,
+            "ice_resist": 25
+        },
+        "skills": ["昆仑剑诀", "寒冰神掌", "冰封万里", "昆仑护体"]
+    },
+    SectType.YINYIN: {
+        "name": "幻音坊",
+        "type": SectType.YINYIN,
+        "description": "以音律、幻术、控制著称",
+        "cultivation": 999,
+        "title": "幻音仙子",
+        "color": "#FF69B4",
+        "stats": {
+            "magic_attack": 35,
+            "crowd_control": 25,
+            "charm": 20,
+            "spirit": 15
+        },
+        "skills": ["幻音奏", "迷魂曲", "清心普善", "魔音贯耳"]
+    },
+    SectType.XUEMO: {
+        "name": "血魔宗",
+        "type": SectType.XUEMO,
+        "description": "以血术、暗杀、爆发著称",
+        "cultivation": 999,
+        "title": "血魔老祖",
+        "color": "#8B0000",
+        "stats": {
+            "attack": 45,
+            "lifesteal": 30,
+            "critical_damage": 25,
+            "shadow_damage": 20
+        },
+        "skills": ["血祭", "嗜血术", "血影遁", "血海滔天"]
     }
 }
 
 
-# 门派克制关系
+# ============================================================================
+# 门派克制关系 - 基于五行相生相克理论
+# ============================================================================
+#
+# 五行对应:
+#   青云门 - 风 (风无形，能吹散万物)
+#   丹鼎门 - 火 (火烈炎，能熔金炼器)
+#   万花谷 - 木 (木生息，能克制污秽)
+#   逍遥宗 - 虚 (虚空幻，难以捉摸)
+#   蜀山派 - 雷 (雷刚猛，破风斩邪)
+#   昆仑派 - 冰 (冰凝静，能封印万物)
+#   幻音坊 - 音 (音无形，能惑人心)
+#   血魔宗 - 血 (血污秽，以血为力)
+#
+# 克制关系设计原则:
+#   - 每个门派克制2-3个门派，被2-3个门派克制
+#   - 优势值 > 1.0 表示攻击方伤害加成
+#   - 优势值 < 1.0 表示攻击方伤害减免
+#   - 总体保持平衡，无绝对强势门派
+#
+# 克制矩阵:
+#   青云门(风) → 克: 万花谷, 逍遥宗 | 被克: 蜀山派, 昆仑派
+#   丹鼎门(火) → 克: 昆仑派, 蜀山派 | 被克: 万花谷, 逍遥宗
+#   万花谷(木) → 克: 逍遥宗, 血魔宗 | 被克: 青云门, 丹鼎门
+#   逍遥宗(虚) → 克: 丹鼎门, 昆仑派 | 被克: 万花谷, 幻音坊
+#   蜀山派(雷) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 血魔宗
+#   昆仑派(冰) → 克: 青云门, 幻音坊 | 被克: 丹鼎门, 逍遥宗
+#   幻音坊(音) → 克: 逍遥宗, 血魔宗 | 被克: 蜀山派, 昆仑派
+#   血魔宗(血) → 克: 蜀山派, 丹鼎门 | 被克: 万花谷, 幻音坊
+# ============================================================================
+
 SECT_ADVANTAGES = {
-    (SectType.QINGYUN, SectType.WANHUA): 1.2,  # 青云克万花（风克土）
-    (SectType.QINGYUN, SectType.XIAOYAO): 1.5,  # 青云克逍遥（风克风？不，应该是顺风）
-    (SectType.QINGYUN, SectType.SHUSHAN): 0.8,  # 青云被蜀山克制
-    (SectType.QINGYUN, SectType.DANDING): 0.9,  # 青云对丹鼎（风火相生）
+    # -------------------------------------------------------------------------
+    # 青云门(风) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.QINGYUN, SectType.WANHUA): 1.25,   # 风吹散木 - 风力强劲时能摧折花木
+    (SectType.QINGYUN, SectType.XIAOYAO): 1.20,  # 风破虚 - 风能吹散虚幻之气
+    (SectType.QINGYUN, SectType.SHUSHAN): 0.80,  # 雷破风 - 雷电能劈开风障
+    (SectType.QINGYUN, SectType.KUNLUN): 0.85,   # 冰封风 - 冰霜能冻结风流
+
+    # -------------------------------------------------------------------------
+    # 丹鼎门(火) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.DANDING, SectType.KUNLUN): 1.30,   # 火熔冰 - 烈火能融化冰雪
+    (SectType.DANDING, SectType.SHUSHAN): 1.20,  # 火炼金 - 火能熔炼金属剑器
+    (SectType.DANDING, SectType.WANHUA): 0.80,   # 木生火反噬 - 木虽生火但灵木能吸纳火焰
+    (SectType.DANDING, SectType.XIAOYAO): 0.85,  # 虚空无物可燃 - 虚幻之道不受火焰伤害
+
+    # -------------------------------------------------------------------------
+    # 万花谷(木) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.WANHUA, SectType.XIAOYAO): 1.25,   # 木克虚 - 万物生长能填满虚空
+    (SectType.WANHUA, SectType.XUEMO): 1.30,     # 灵药净血 - 灵药能净化血污之术
+    (SectType.WANHUA, SectType.QINGYUN): 0.80,   # 风折木 - 狂风能摧折花木
+    (SectType.WANHUA, SectType.DANDING): 1.20,   # 木克火吸纳 - 灵木吸纳火焰化为己用
+
+    # -------------------------------------------------------------------------
+    # 逍遥宗(虚) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.XIAOYAO, SectType.DANDING): 1.25,  # 虚无不受火 - 虚空之道不受火焰伤害
+    (SectType.XIAOYAO, SectType.KUNLUN): 1.20,   # 虚不受冰 - 虚幻之道难以被冰封
+    (SectType.XIAOYAO, SectType.WANHUA): 0.80,   # 实克虚 - 实体之物能填充虚空
+    (SectType.XIAOYAO, SectType.YINYIN): 0.75,   # 音扰虚 - 音律能扰乱虚静之心
+
+    # -------------------------------------------------------------------------
+    # 蜀山派(雷) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.SHUSHAN, SectType.QINGYUN): 1.25,  # 雷破风 - 雷电能劈开风障
+    (SectType.SHUSHAN, SectType.YINYIN): 1.20,   # 雷破音 - 雷鸣之声能震破音律
+    (SectType.SHUSHAN, SectType.DANDING): 0.80,  # 火炼金 - 火能熔炼金属剑器
+    (SectType.SHUSHAN, SectType.XUEMO): 0.75,    # 血污金 - 血污之术能腐蚀剑器
+
+    # -------------------------------------------------------------------------
+    # 昆仑派(冰) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.KUNLUN, SectType.QINGYUN): 1.15,   # 冰封风 - 冰霜能冻结风流
+    (SectType.KUNLUN, SectType.YINYIN): 1.25,    # 冰静音 - 极寒能冻结音波传播
+    (SectType.KUNLUN, SectType.DANDING): 0.70,   # 火熔冰 - 烈火能融化冰雪
+    (SectType.KUNLUN, SectType.XIAOYAO): 0.80,   # 虚不受冰 - 虚幻之道难以被冰封
+
+    # -------------------------------------------------------------------------
+    # 幻音坊(音) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.YINYIN, SectType.XIAOYAO): 1.25,   # 音扰虚 - 音律能扰乱虚静之心
+    (SectType.YINYIN, SectType.XUEMO): 1.20,     # 清音净血 - 清心之音能净化血术
+    (SectType.YINYIN, SectType.SHUSHAN): 0.80,   # 雷破音 - 雷鸣之声能震破音律
+    (SectType.YINYIN, SectType.KUNLUN): 0.75,    # 冰静音 - 极寒能冻结音波传播
+
+    # -------------------------------------------------------------------------
+    # 血魔宗(血) 克制关系
+    # -------------------------------------------------------------------------
+    (SectType.XUEMO, SectType.SHUSHAN): 1.25,    # 血污金 - 血污之术能腐蚀剑器
+    (SectType.XUEMO, SectType.DANDING): 1.15,    # 血灭火 - 血海能浇灭烈火
+    (SectType.XUEMO, SectType.WANHUA): 0.70,     # 灵药净血 - 灵药能净化血污之术
+    (SectType.XUEMO, SectType.YINYIN): 0.80,     # 清音净血 - 清心之音能净化血术
 }
 
 
 def get_sect_advantage(attacker: SectType, defender: SectType) -> float:
-    """获取门派克制加成"""
+    """获取门派克制加成
+
+    Args:
+        attacker: 攻击方门派
+        defender: 防守方门派
+
+    Returns:
+        float: 伤害倍率 (>1.0为优势, <1.0为劣势, =1.0为中立)
+    """
     return SECT_ADVANTAGES.get((attacker, defender), 1.0)
+
+
+def get_sect_counter_info(sect: SectType) -> Dict:
+    """获取门派克制信息
+
+    返回指定门派的完整克制关系信息，包括:
+    - advantages: 该门派克制的门派列表
+    - disadvantages: 克制该门派的门派列表
+    - multipliers: 该门派对所有其他门派的伤害倍率
+
+    Args:
+        sect: 要查询的门派类型
+
+    Returns:
+        Dict: 包含 advantages, disadvantages, multipliers 的字典
+    """
+    advantages = []      # 该门派克制的目标
+    disadvantages = []   # 克制该门派的来源
+    multipliers = {}     # 对各门派的伤害倍率
+
+    # 获取所有其他门派
+    all_sects = list(SectType)
+
+    for other_sect in all_sects:
+        if other_sect == sect:
+            continue
+
+        # 获取该门派攻击其他门派的倍率
+        attack_mult = SECT_ADVANTAGES.get((sect, other_sect), 1.0)
+        multipliers[other_sect] = attack_mult
+
+        # 判断克制关系
+        if attack_mult > 1.0:
+            advantages.append(other_sect)
+        elif attack_mult < 1.0:
+            disadvantages.append(other_sect)
+
+    return {
+        "sect": sect,
+        "sect_name": sect.value,
+        "advantages": advantages,
+        "advantage_names": [s.value for s in advantages],
+        "disadvantages": disadvantages,
+        "disadvantage_names": [s.value for s in disadvantages],
+        "multipliers": multipliers,
+    }
 
 
 if __name__ == "__main__":

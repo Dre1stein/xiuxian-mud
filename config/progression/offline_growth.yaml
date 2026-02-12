@@ -1,0 +1,41 @@
+offline_growth:
+  enabled: true
+  growth_rate_percentage: 0.20    # 20%在线效率
+  max_accumulation_hours: 336     # 14天上限
+  min_accumulation_hours: 1       # 最少1小时
+
+  activation:
+    min_level: 10
+    min_playtime_hours: 10
+    require_any: true             # 满足其一即可
+
+  reward_sources:
+    meditation:
+      xp_per_hour: 5
+      stones_per_hour: 2
+      enabled: true
+    sect_allowance:
+      stones_per_hour: 1
+      cultivation_per_hour: 1
+      requires_sect: true
+      enabled: true
+    passive_cultivation:
+      xp_per_hour: 3
+      cultivation_per_hour: 2
+      enabled: true
+
+  stage_multipliers:
+    "炼气期": 1.0
+    "筑基期": 1.2
+    "金丹期": 1.5
+    "元婴期": 1.8
+    "元神期": 2.0
+    "化神期": 2.5
+    "炼虚期": 3.0
+    "合体期": 3.5
+    "大乘期": 4.0
+    "渡劫期": 5.0
+    "真仙境": 6.0
+    "金仙境": 8.0
+    "太乙境": 10.0
+    "大罗境": 12.0

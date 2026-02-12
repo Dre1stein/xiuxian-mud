@@ -1,0 +1,190 @@
+# Milestone configuration for progression system
+# Defines achievement milestones across different categories
+
+milestones:
+  # 境界突破里程碑 (REALM)
+  realm:
+    - id: breakthrough_zhuji
+      name: 筑基成功
+      description: 突破至筑基期
+      required_stage: 筑基期
+      rewards:
+        xp: 50000
+        spirit_stones: 5000
+        title: 筑基修士
+
+    - id: breakthrough_jindan
+      name: 金丹大成
+      description: 凝结金丹成功
+      required_stage: 金丹期
+      rewards:
+        xp: 500000
+        spirit_stones: 50000
+        title: 金丹真人
+
+    - id: breakthrough_yuanying
+      name: 元婴出窍
+      description: 元婴期突破
+      required_stage: 元婴期
+      rewards:
+        xp: 5000000
+        spirit_stones: 500000
+        title: 元婴真君
+
+    - id: breakthrough_yuanshen
+      name: 元神化形
+      description: 元神期突破
+      required_stage: 元神期
+      rewards:
+        xp: 50000000
+        spirit_stones: 5000000
+        title: 元神尊者
+
+    - id: breakthrough_huashen
+      name: 化神入道
+      description: 化神期突破
+      required_stage: 化神期
+      rewards:
+        xp: 500000000
+        spirit_stones: 50000000
+        title: 化神道君
+
+    - id: breakthrough_zhenxian
+      name: 飞升真仙
+      description: 渡劫飞升真仙
+      required_stage: 真仙境
+      rewards:
+        xp: 5000000000
+        spirit_stones: 500000000
+        title: 真仙
+
+    - id: breakthrough_jinxian
+      name: 金仙证道
+      description: 成就金仙
+      required_stage: 金仙境
+      rewards:
+        xp: 50000000000
+        spirit_stones: 5000000000
+        title: 金仙
+
+    - id: breakthrough_daluo
+      name: 大罗金仙
+      description: 成就大罗
+      required_stage: 大罗境
+      rewards:
+        xp: 500000000000
+        spirit_stones: 50000000000
+        title: 大罗金仙
+
+  # 等级里程碑 (LEVEL)
+  level:
+    - id: level_100
+      name: 百级修士
+      required_level: 100
+      rewards:
+        xp: 10000
+        spirit_stones: 1000
+        school_points: 5
+
+    - id: level_500
+      name: 五百级高人
+      required_level: 500
+      rewards:
+        xp: 1000000
+        spirit_stones: 100000
+        school_points: 20
+
+    - id: level_1000
+      name: 千级宗师
+      required_level: 1000
+      rewards:
+        xp: 100000000
+        spirit_stones: 10000000
+        school_points: 50
+
+    - id: level_2000
+      name: 两千级尊者
+      required_level: 2000
+      rewards:
+        xp: 10000000000
+        spirit_stones: 1000000000
+        school_points: 100
+
+    - id: level_5000
+      name: 五千级至尊
+      required_level: 5000
+      rewards:
+        xp: 1000000000000
+        spirit_stones: 100000000000
+        school_points: 200
+
+  # 游戏时间里程碑 (PLAYTIME)
+  playtime:
+    - id: playtime_10h
+      name: 初入修仙
+      description: 开始修仙之旅
+      required_playtime_hours: 10
+      rewards:
+        spirit_stones: 500
+        school_points: 3
+
+    - id: playtime_50h
+      name: 小有所成
+      description: 修仙渐入佳境
+      required_playtime_hours: 50
+      rewards:
+        spirit_stones: 2000
+        school_points: 10
+
+    - id: playtime_100h
+      name: 百日修士
+      description: 百日筑基有成
+      required_playtime_hours: 100
+      rewards:
+        spirit_stones: 5000
+        school_points: 20
+        title: 百日修士
+
+    - id: playtime_500h
+      name: 修仙达人
+      description: 道行深厚
+      required_playtime_hours: 500
+      rewards:
+        spirit_stones: 25000
+        school_points: 50
+        title: 修仙达人
+
+    - id: playtime_1000h
+      name: 千年道行
+      description: 道行通天
+      required_playtime_hours: 1000
+      rewards:
+        spirit_stones: 50000
+        school_points: 100
+        title: 千年道行
+
+  # 战斗里程碑 (COMBAT)
+  combat:
+    - id: combat_100
+      name: 百战修士
+      description: 经历百战历练
+      required_combats: 100
+      rewards:
+        xp: 10000
+        spirit_stones: 5000
+
+    - id: combat_1000
+      name: 千战尊者
+      description: 身经千战
+      required_combats: 1000
+      rewards:
+        xp: 100000
+        spirit_stones: 50000
+
+    - id: combat_10000
+      name: 万战战神
+      description: 战无不胜
+      required_combats: 10000
+      rewards:
+        xp: 1000000
+        spirit_stones: 500000
